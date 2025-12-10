@@ -90,6 +90,24 @@ public class UserQuestionsTest {
         Assertions.assertEquals(Action.SHOW, result);
 
     }
+    @Test
+    public void userDescriptionTest() {
+        String simultan = "Hello!";
+        Scanner fake = new Scanner(new ByteArrayInputStream(simultan.getBytes()));
+        UserQuestions userQuestions = new UserQuestions(fake);
+        String result = userQuestions.userDescription(fake);
+        Assertions.assertEquals("Hello!", result);
+
+    }
+    @Test
+    public void userDescriptionTest2() {
+        String simultan = "Hello World!";
+        Scanner fake = new Scanner(new ByteArrayInputStream(simultan.getBytes()));
+        UserQuestions userQuestions = new UserQuestions(fake);
+        String result = userQuestions.userDescription();
+        Assertions.assertEquals("Hello World!", result);
+
+    }
 
 }
 
