@@ -3,17 +3,73 @@ package org.example;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.TreeMap;
 
 public class TaskManagerTest {
     TaskManager taskManager = new TaskManager();
     @Test
-    void addListTaskTest(){
-        String text= "Hello";
-        TreeMap<Integer,String> exampel = new TreeMap<>();
-        exampel.put(1,text);
-        taskManager.add("Hello");
-        Assertions.assertEquals(exampel,taskManager.getTaskMap());
+    void addListTaskTest() {
+        String text = "Hello";
+        taskManager.add(text);
+        Assertions.assertEquals(taskManager.getTaskMap().get(1).getDescription(),text);
+
 
     }
+    @Test
+    void addListMoreTaskTest() {
+        String text = "Hello";
+        String text2 = "WOW!";
+        taskManager.add(text);
+        taskManager.add(text);
+        taskManager.add(text2);
+        Assertions.assertEquals(taskManager.getTaskMap().get(3).getDescription(),text2);
+
+
+    }
+    @Test
+    void addStatusTest() {
+        String text = "Hello";
+        String text2 = "WOW!";
+        taskManager.add(text);
+        taskManager.add(text);
+        taskManager.add(text2);
+        Assertions.assertEquals(taskManager.getTaskMap().get(1).getStatus(), Enum.Status.TODO);
+
+
+    }
+    @Test
+    void addStatus3Test() {
+        String text = "Hello";
+        String text2 = "WOW!";
+        taskManager.add(text);
+        taskManager.add(text);
+        taskManager.add(text2);
+        Assertions.assertEquals(taskManager.getTaskMap().get(3).getStatus(), Enum.Status.TODO);
+
+
+    }
+
+    @Test
+    void addTimeTest() {
+        String text = "Hello";
+        String text2 = "WOW!";
+        taskManager.add(text);
+        taskManager.add(text);
+        taskManager.add(text2);
+        Assertions.assertEquals(taskManager.getTaskMap().get(3).getTime(), "12.11.2025");
+
+
+    }
+    @Test
+    void addUpdateTest() {
+        String text = "Hello";
+        String text2 = "WOW!";
+        taskManager.add(text);
+        taskManager.add(text);
+        taskManager.add(text2);
+        Assertions.assertEquals(taskManager.getTaskMap().get(3).getUpdate(), "12.11.2025");
+
+
+    }
+
 }
+

@@ -127,6 +127,26 @@ public class UserQuestionsTest {
         Assertions.assertEquals("Hello", result);
 
     }
+    @Test
+    public void userStatusDescriptionTest() {
+        String simultan = "done\n";
+        Scanner fake = new Scanner(new ByteArrayInputStream(simultan.getBytes()));
+        UserQuestions userQuestions = new UserQuestions(fake);
+        UserQuestions.Status result = userQuestions.userStatusDescription(fake);
+        Assertions.assertEquals(UserQuestions.Status.DONE, result);
+
+
+    }
+    @Test
+    public void userStatusDescriptionWrongTest() {
+        String simultan = "WASWS\nPROGRESS";
+        Scanner fake = new Scanner(new ByteArrayInputStream(simultan.getBytes()));
+        UserQuestions userQuestions = new UserQuestions(fake);
+        UserQuestions.Status result = userQuestions.userStatusDescription(fake);
+        Assertions.assertEquals(UserQuestions.Status.PROGRESS, result);
+
+
+    }
 
 }
 

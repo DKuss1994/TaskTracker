@@ -3,7 +3,7 @@ package org.example;
 import java.util.Scanner;
 
 
-public class UserQuestions {
+public class UserQuestions extends Enum {
     private final Scanner sc;
 
     public UserQuestions(Scanner sc) {
@@ -52,7 +52,6 @@ public class UserQuestions {
         }
         return "";
     }
-
     public String userDescription() {
         while (sc.hasNextLine()) {
             System.out.print("Description about it. ");
@@ -64,18 +63,25 @@ public class UserQuestions {
         return "";
     }
 
+    public Status userStatusDescription(Scanner sc) {
+        while (true) {
+            System.out.print("Description about Status.(DONE,PROGRESS,TODO) ");
+            String input = sc.next().trim().toUpperCase();
+            try {
+                return Status.valueOf(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println("Illegal input.");
+            }
 
-    enum Action {
-        ADD,
-        DELETE,
-        SEARCH,
-        CHANGE,
-        EXIT,
-        INFO,
-        SHOW
+        }
 
 
     }
+
+
+
+
+
 
 }
 
