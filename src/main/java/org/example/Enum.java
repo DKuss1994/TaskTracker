@@ -7,6 +7,9 @@ public class Enum {
         PROGRESS
     }
 
+
+
+
     enum Action {
         ADD,
         DELETE,
@@ -17,5 +20,10 @@ public class Enum {
         SHOW
 
 
+    }
+
+    enum YesorNo {
+        YES,
+        NO
     }
 }

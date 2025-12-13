@@ -6,6 +6,7 @@ public class Task extends Enum {
     private String time;
     private String update;
     private String printout;
+
     public Task(String description){
         this.description = description;
         this.status = Status.TODO;

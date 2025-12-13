@@ -19,8 +19,20 @@ public class TaskManager extends Enum {
     }
 
     public void delete(int key) {
+        System.out.println("Key: "+key+" delete successful!");
         taskMap.remove(key);
 
+    }
+    public void showTasks(){
+        if(taskMap.isEmpty()){
+            System.out.println("Now task found!");
+        }
+        else {
+
+            for(int key: taskMap.keySet()){
+                System.out.println("Key: "+key+" Task: "+ taskMap.get(key).getPrintout());
+            }
+        }
     }
 }
 

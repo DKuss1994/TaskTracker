@@ -9,8 +9,10 @@ class Main{
         taskManager.add("Hello");
         taskManager.add("Bye");
         taskManager.getTaskMap().get(2).setStatus(Enum.Status.DONE);
-        System.out.println(taskManager.getTaskMap().get(2).getPrintout());
-        System.out.println(taskManager.getTaskMap().get(1).getPrintout());
+        taskManager.showTasks();
+        taskManager.delete(1);
+        taskManager.add("HEELO");
+        taskManager.showTasks();
 
     }
 }

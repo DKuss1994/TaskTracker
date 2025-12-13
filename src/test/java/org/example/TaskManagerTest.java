@@ -76,6 +76,14 @@ public class TaskManagerTest {
         taskManager.delete(1);
         Assertions.assertNull(taskManager.getTaskMap().get(1));
     }
+    @Test
+    void deletTest2(){
+        taskManager.add("hello");
+        taskManager.add("hello2");
+        taskManager.add("hello3");
+        taskManager.delete(1);
+        Assertions.assertNull(taskManager.getTaskMap().get(1));
+    }
 
 }
 
