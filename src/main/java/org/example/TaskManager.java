@@ -25,7 +25,7 @@ public class TaskManager extends Enum {
     }
     public void showTasks(){
         if(taskMap.isEmpty()){
-            System.out.println("Now task found!");
+            System.out.println("Now task found! Pls add Task.");
         }
         else {
 

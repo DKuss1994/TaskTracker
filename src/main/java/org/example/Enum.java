@@ -16,7 +16,6 @@ public class Enum {
         SEARCH,
         CHANGE,
         EXIT,
-        INFO,
         SHOW
 
 
