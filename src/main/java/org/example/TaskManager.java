@@ -3,7 +3,7 @@ package org.example;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
-public class TaskManager extends Enum {
+public class TaskManager {
     private final TreeMap<Integer, Task> taskMap = new TreeMap<>();
     private int id = 0;
 
@@ -13,27 +13,32 @@ public class TaskManager extends Enum {
     }
 
     public void add(String description) {
+        if (description == null || description.isBlank()) {
+            throw new IllegalArgumentException("Description invalid");
+        }
         Task task = new Task(description);
         id++;
         taskMap.put(id, task);
     }
 
     public void delete(int key) {
-        System.out.println("Key: "+key+" delete successful!");
-        taskMap.remove(key);
-
-    }
-    public void showTasks(){
-        if(taskMap.isEmpty()){
-            System.out.println("Now task found! Pls add Task.");
-        }
-        else {
-
-            for(int key: taskMap.keySet()){
-                System.out.println("Key: "+key+" Task: "+ taskMap.get(key).getPrintout());
-            }
+        if (taskMap.containsKey(key)) {
+            taskMap.remove(key);
+        } else {
+            throw new IllegalArgumentException("Description invalid");
         }
     }
+
+
+public void showTasks() {
+    if (taskMap.isEmpty()) {
+        throw new IllegalArgumentException("Not task found! Pls add Task.");
+    } else {
+        for (int key : taskMap.keySet()) {
+            System.out.println("Key: " + key + " Task: " + taskMap.get(key).getPrintout());
+        }
+    }
+}
 }
 
 /*

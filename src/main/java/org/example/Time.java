@@ -1,6 +1,6 @@
 package org.example;
 
-public class Time extends Enum{
+public class Time {
     private String time;
 
     public Time(){

@@ -1,15 +1,15 @@
 package org.example;
 
-public class Task extends Enum {
+public class Task {
     private String description;
-    private Status status;
+    private Enum.Status status;
     private String time;
     private String update;
     private String printout;
 
     public Task(String description){
         this.description = description;
-        this.status = Status.TODO;
+        this.status = Enum.Status.TODO;
         this.time = "12.11.2025";//Muss noch eine classe angelegt werden.
         this.update = "12.11.2025";
     }
@@ -22,11 +22,11 @@ public class Task extends Enum {
         this.description = description;
     }
 
-    public Status getStatus() {
+    public Enum.Status getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(Enum.Status status) {
         this.status = status;
     }
 

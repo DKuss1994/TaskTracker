@@ -3,27 +3,61 @@ package org.example;
 import java.util.Scanner;
 
 public class SystemManager {
-    Scanner sc = new Scanner(System.in);
-    UserQuestions userQuestions = new UserQuestions(sc);
-    TaskManager taskManager = new TaskManager();
+    private final Scanner sc = new Scanner(System.in);
+    private final UserQuestions userQuestions = new UserQuestions(sc);
+    private final TaskManager taskManager = new TaskManager();
+    private boolean loop = true;
 
     public void start() {
-        while (true) {
+        while (loop) {
 
 
             Enum.Action action = userQuestions.userAction();
-            if (action == Enum.Action.ADD) {
-                String description = userQuestions.userDescription();
-                taskManager.add(description);
-            } else if (action == Enum.Action.SHOW) {
-                taskManager.showTasks();
-            } else if (action == Enum.Action.DELETE) {
-                int keyNumber = userQuestions.userKeyDelete();
-                taskManager.delete(keyNumber);
-            } else if (action == Enum.Action.EXIT) {
-                break;
-                //Json Safe.
+            switch (action) {
+                case ADD -> extractedAddUserDescription();
+                case DELETE -> extractedDeleteUserKey();
+                case SHOW -> extractedShow();
+                case EXIT -> exit();
             }
+
+/*
+
+            //Json Safe.
+        }*/
         }
     }
+    public void exit(){
+        this.loop = false;
+    }
+private  void extractedShow(){
+        try {
+            taskManager.showTasks();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 }
+        private void extractedAddUserDescription () {
+            try {
+                String description = userQuestions.userDescription();
+                taskManager.add(description);
+                System.out.println("Task successfully added");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        private void extractedDeleteUserKey () {
+            try {
+                taskManager.showTasks();
+                int keyNumber = userQuestions.userKeyDelete();
+                taskManager.delete(keyNumber);
+                System.out.println("Key: " + keyNumber + " successful delete.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+
+            }
+
+
+            System.out.println("Number not found. Try again.");
+        }
+    }

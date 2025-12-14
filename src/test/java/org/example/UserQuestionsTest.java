@@ -14,8 +14,8 @@ public class UserQuestionsTest {
         String simultan = "add\n";
         Scanner fake = new Scanner(new ByteArrayInputStream(simultan.getBytes()));
         UserQuestions userQuestions = new UserQuestions(fake);
-        UserQuestions.Action result = userQuestions.userAction(fake);
-        Assertions.assertEquals(UserQuestions.Action.ADD,result);
+        Enum.Action result = userQuestions.userAction(fake);
+        Assertions.assertEquals(Enum.Action.ADD,result);
 
 
     }
@@ -24,8 +24,8 @@ public class UserQuestionsTest {
         String simultan = "wrong\nadd\n";
         Scanner fake = new Scanner(new ByteArrayInputStream(simultan.getBytes()));
         UserQuestions userQuestions = new UserQuestions(fake);
-        UserQuestions.Action result = userQuestions.userAction(fake);
-        Assertions.assertEquals(UserQuestions.Action.ADD, result);
+        Enum.Action result = userQuestions.userAction(fake);
+        Assertions.assertEquals(Enum.Action.ADD, result);
 
     }
     @Test
@@ -33,8 +33,8 @@ public class UserQuestionsTest {
         String simultan = "add\nwrong\n";
         Scanner fake = new Scanner(new ByteArrayInputStream(simultan.getBytes()));
         UserQuestions userQuestions = new UserQuestions(fake);
-        UserQuestions.Action result = userQuestions.userAction(fake);
-        Assertions.assertEquals(UserQuestions.Action.ADD, result);
+        Enum.Action result = userQuestions.userAction(fake);
+        Assertions.assertEquals(Enum.Action.ADD, result);
 
     }
     @Test
@@ -42,8 +42,8 @@ public class UserQuestionsTest {
         String simultan = "DeLeTe\n";
         Scanner fake = new Scanner(new ByteArrayInputStream(simultan.getBytes()));
         UserQuestions userQuestions = new UserQuestions(fake);
-        UserQuestions.Action result = userQuestions.userAction(fake);
-        Assertions.assertEquals(UserQuestions.Action.DELETE, result);
+        Enum.Action result = userQuestions.userAction(fake);
+        Assertions.assertEquals(Enum.Action.DELETE, result);
 
     }
     @Test
@@ -51,8 +51,8 @@ public class UserQuestionsTest {
         String simultan = "seARch\n";
         Scanner fake = new Scanner(new ByteArrayInputStream(simultan.getBytes()));
         UserQuestions userQuestions = new UserQuestions(fake);
-        UserQuestions.Action result = userQuestions.userAction(fake);
-        Assertions.assertEquals(UserQuestions.Action.SEARCH, result);
+        Enum.Action result = userQuestions.userAction(fake);
+        Assertions.assertEquals(Enum.Action.SEARCH, result);
 
     }
     @Test
@@ -60,8 +60,8 @@ public class UserQuestionsTest {
         String simultan = "change\n";
         Scanner fake = new Scanner(new ByteArrayInputStream(simultan.getBytes()));
         UserQuestions userQuestions = new UserQuestions(fake);
-        UserQuestions.Action result = userQuestions.userAction(fake);
-        Assertions.assertEquals(UserQuestions.Action.CHANGE, result);
+        Enum.Action result = userQuestions.userAction(fake);
+        Assertions.assertEquals(Enum.Action.CHANGE, result);
 
     }
     @Test
@@ -69,17 +69,8 @@ public class UserQuestionsTest {
         String simultan = "exIt\n";
         Scanner fake = new Scanner(new ByteArrayInputStream(simultan.getBytes()));
         UserQuestions userQuestions = new UserQuestions(fake);
-        UserQuestions.Action result = userQuestions.userAction(fake);
-        Assertions.assertEquals(UserQuestions.Action.EXIT, result);
-
-    }
-    @Test
-    public void infoTest() {
-        String simultan = "INFO       \n";
-        Scanner fake = new Scanner(new ByteArrayInputStream(simultan.getBytes()));
-        UserQuestions userQuestions = new UserQuestions(fake);
-        UserQuestions.Action result = userQuestions.userAction(fake);
-        Assertions.assertEquals(UserQuestions.Action.INFO, result);
+        Enum.Action result = userQuestions.userAction(fake);
+        Assertions.assertEquals(Enum.Action.EXIT, result);
 
     }
     @Test
@@ -87,8 +78,8 @@ public class UserQuestionsTest {
         String simultan = "            show       \n";
         Scanner fake = new Scanner(new ByteArrayInputStream(simultan.getBytes()));
         UserQuestions userQuestions = new UserQuestions(fake);
-        UserQuestions.Action result = userQuestions.userAction(fake);
-        Assertions.assertEquals(UserQuestions.Action.SHOW, result);
+        Enum.Action result = userQuestions.userAction(fake);
+        Assertions.assertEquals(Enum.Action.SHOW, result);
 
     }
     @Test
@@ -132,8 +123,8 @@ public class UserQuestionsTest {
         String simultan = "done\n";
         Scanner fake = new Scanner(new ByteArrayInputStream(simultan.getBytes()));
         UserQuestions userQuestions = new UserQuestions(fake);
-        UserQuestions.Status result = userQuestions.userStatusDescription(fake);
-        Assertions.assertEquals(UserQuestions.Status.DONE, result);
+        Enum.Status result = userQuestions.userStatusDescription(fake);
+        Assertions.assertEquals(Enum.Status.DONE, result);
 
 
     }
@@ -142,8 +133,8 @@ public class UserQuestionsTest {
         String simultan = "WASWS\nPROGRESS";
         Scanner fake = new Scanner(new ByteArrayInputStream(simultan.getBytes()));
         UserQuestions userQuestions = new UserQuestions(fake);
-        UserQuestions.Status result = userQuestions.userStatusDescription(fake);
-        Assertions.assertEquals(UserQuestions.Status.PROGRESS, result);
+        Enum.Status result = userQuestions.userStatusDescription(fake);
+        Assertions.assertEquals(Enum.Status.PROGRESS, result);
 
 
     }
