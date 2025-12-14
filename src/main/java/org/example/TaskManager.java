@@ -1,4 +1,5 @@
 package org.example;
+
 import java.util.TreeMap;
 
 public class TaskManager {
@@ -6,7 +7,7 @@ public class TaskManager {
     private int id = 0;
 
 
-    public TreeMap<Integer, Task> getTaskMap() {
+    TreeMap<Integer, Task> getTaskMap() {
         return taskMap;
     }
 
@@ -31,30 +32,30 @@ public class TaskManager {
     }
 
 
-public void showTasks() {
-    if (taskMap.isEmpty()) {
-        throw new IllegalArgumentException("Not task found! Pls add Task.");
-    } else {
-        for (int key : taskMap.keySet()) {
-            System.out.println("Key: " + key + " Task: " + taskMap.get(key).getPrintout());
+    public void showTasks() {
+        if (taskMap.isEmpty()) {
+            throw new IllegalArgumentException("Not task found! Pls add Task.");
+        } else {
+            for (int key : taskMap.keySet()) {
+                System.out.println("Key: " + key + " Task: " + taskMap.get(key).getPrintout());
+            }
         }
     }
-}
-public void changeTask(int key,String description) {
-    if (taskMap.isEmpty()) {
-        throw new IllegalArgumentException("Not task found! Pls add Task.");
 
-    } else if (taskMap.containsKey(key)) {
-        Task task = new Task(description);
+    public void changeTask(int key, String description) {
+        Task task = taskMap.get(key);
+        if (task == null) {
+            throw new IllegalArgumentException("Key not found");
+        }
+
+        if (description == null || description.isBlank()) {
+            throw new IllegalArgumentException("Description invalid");
+        }
+        task.setDescription(description);
         task.setUpdate();
-        taskMap.replace(key,task);
-
-
-    } else {
-        throw new IllegalArgumentException("Key not found!");
     }
 }
-}
+
 
 /*
  description: Eine kurze Beschreibung der Aufgabe

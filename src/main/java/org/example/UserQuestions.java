@@ -1,9 +1,6 @@
 package org.example;
 
-import java.awt.*;
 import java.util.Scanner;
-
-import org.example.Enum;
 
 
 public class UserQuestions {
@@ -28,12 +25,16 @@ public class UserQuestions {
     }
 
 
-
-    public String userDescription() {
-        System.out.println("Description about it. ");
-        return sc.nextLine().trim();
+    public String userDescription(String text) {
+        System.out.print(text);
+        while (true) {
+            String userText = sc.nextLine().trim();
+            if (!userText.isEmpty()) {
+                return userText;
+            }
+            System.out.println("Description must not be empty.");
+        }
     }
-
 
 
     public Enum.Status userStatusDescription() {
@@ -49,12 +50,12 @@ public class UserQuestions {
     }
 
 
+    public int userKey(String text) {
+        while (true) {
+            System.out.println(text);
 
-    public int userKeyDelete() {
-        while (true) {
-            System.out.println("Take someone of the key number too delete the task ");
-            int input = sc.nextInt();
             try {
+                int input = Integer.parseInt(sc.nextLine());
                 if (input < 0) {
                     System.out.println("Number are negativ.");
                 } else {
@@ -65,20 +66,6 @@ public class UserQuestions {
             }
         }
     }
-    public int userKeyChange() {
-        while (true) {
-            System.out.println("Take someone of the key number too change the task. ");
-            int input = sc.nextInt();
-            try {
-                if (input < 0) {
-                    System.out.println("Number are negativ.");
-                } else {
-                    return input;
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("Please enter a number.");
-            }
-        }
-    }
+
 
 }

@@ -95,7 +95,7 @@ public class UserQuestionsTest {
         String simultan = "Hello!";
         Scanner fake = new Scanner(simultan);
         UserQuestions userQuestions = new UserQuestions(fake);
-        String result = userQuestions.userDescription(fake);
+        String result = userQuestions.userDescription(simultan);
         Assertions.assertEquals("Hello!", result);
 
     }
@@ -105,7 +105,7 @@ public class UserQuestionsTest {
         String simultan = "Hello World!";
         Scanner fake = new Scanner(simultan);
         UserQuestions userQuestions = new UserQuestions(fake);
-        String result = userQuestions.userDescription();
+        String result = userQuestions.userDescription(simultan);
         Assertions.assertEquals("Hello World!", result);
 
     }
@@ -116,7 +116,7 @@ public class UserQuestionsTest {
         String simultan = "done\n";
         Scanner fake = new Scanner(simultan);
         UserQuestions userQuestions = new UserQuestions(fake);
-        Enum.Status result = userQuestions.userStatusDescription(fake);
+        Enum.Status result = userQuestions.userStatusDescription();
         Assertions.assertEquals(Enum.Status.DONE, result);
 
 
@@ -127,7 +127,7 @@ public class UserQuestionsTest {
         String simultan = "WASWS\nPROGRESS";
         Scanner fake = new Scanner(simultan);
         UserQuestions userQuestions = new UserQuestions(fake);
-        Enum.Status result = userQuestions.userStatusDescription(fake);
+        Enum.Status result = userQuestions.userStatusDescription();
         Assertions.assertEquals(Enum.Status.PROGRESS, result);
 
 

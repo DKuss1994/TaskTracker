@@ -32,10 +32,9 @@ public class SystemManager {
     }
 
 public void extractedChangeUserDescription(){
-    int key = userQuestions.userKeyChange();
-    System.out.println(taskManager.getTaskMap().get(key).getPrintout());
-    System.out.println("What would you change? ");
-        String description = userQuestions.userDescription();
+        extractedShow();
+    int key = userQuestions.userKey("Take someone of the key number too change the task. ");
+        String description = userQuestions.userDescription("What do u want to change? ");
         try {
             taskManager.changeTask(key,description);
         }
@@ -57,7 +56,7 @@ public void extractedChangeUserDescription(){
 
     private void extractedAddUserDescription() {
 
-String description = userQuestions.userDescription();
+String description = userQuestions.userDescription("Description about it. ");
         try {
             taskManager.add(description);
             System.out.println("Task successfully added");
@@ -69,7 +68,7 @@ String description = userQuestions.userDescription();
     private void extractedDeleteUserKey() {
         try {
             taskManager.showTasks();
-            int keyNumber = userQuestions.userKeyDelete();
+            int keyNumber = userQuestions.userKey("Take someone of the key number too delete the task ");
             taskManager.delete(keyNumber);
             System.out.println("Key: " + keyNumber + " successful delete.");
         } catch (IllegalArgumentException e) {
