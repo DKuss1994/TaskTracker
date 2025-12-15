@@ -1,5 +1,8 @@
 package org.example;
-
+import org.json.JSONObject;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Scanner;
@@ -9,8 +12,10 @@ public class SystemManager {
     private final UserQuestions userQuestions = new UserQuestions(sc);
     private final TaskManager taskManager = new TaskManager();
     private boolean loop = true;
+    private static final Path FILE = Path.of("tasks.json");
 
     public void start() {
+        loadTasks();
         while (loop) {
             Enum.Action action = userQuestions.userAction("What do u want? (ADD,DELETE,SEARCH,CHANGE,INFO,SHOW,EXIT) ");
             switch (action) {
@@ -50,6 +55,7 @@ public class SystemManager {
     }
 
     public void exit() {
+        shutdown();
         this.loop = false;
     }
 
@@ -143,4 +149,50 @@ public class SystemManager {
         }
         System.out.println("Number not found. Try again.");
     }
+    private void loadTasks() {
+        if (!Files.exists(FILE)) {
+            return;
+        }
+
+        try {
+            String content = Files.readString(FILE);
+            JSONObject root = new JSONObject(content);
+
+            Map<Integer, Task> map = new HashMap<>();
+
+            for (String key : root.keySet()) {
+                int id = Integer.parseInt(key);
+                Task task = Task.fromJson(root.getJSONObject(key));
+                map.put(id, task);
+            }
+
+            taskManager.setTaskMap(map);
+
+        } catch (Exception e) {
+            System.out.println("Failed load!");
+        }
+    }
+
+    public void shutdown() {
+        saveTasks();
+    }
+
+    private void saveTasks() {
+        JSONObject root = new JSONObject();
+
+        try {
+            for (Map.Entry<Integer, Task> entry : taskManager.getAllTask().entrySet()) {
+                root.put(
+                        String.valueOf(entry.getKey()),
+                        entry.getValue().toJson()
+                );
+            }
+
+            Files.writeString(FILE, root.toString(4));
+
+        } catch (Exception e) {
+            System.out.println("Failed save.");
+        }
+    }
 }
+

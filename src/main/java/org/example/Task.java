@@ -1,4 +1,7 @@
 package org.example;
+
+import org.json.JSONObject;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -8,17 +11,18 @@ public class Task {
     private String time;
     private String update;
 
+    private Task(String description, Enum.Status status, String time, String update) {
+        this.description = description;
+        this.status = status;
+        this.time = time;
+        this.update = update;
+    }
+
     public Task(String description) {
         this.description = description;
         this.status = Enum.Status.TODO;
         this.time = "";
         this.update = "";
-    }
-    public String getTime(){
-        return this.time;
-    }
-    public String getUpdate(){
-        return this.update;
     }
 
     public String getDescription() {
@@ -40,6 +44,7 @@ public class Task {
     public String getPrintout() {
         return "Description: " + description + ", Status: " + status + ", Create Time: " + time + ", Last change time: " + update;
     }
+
     public void setTime() {
         LocalDateTime nowTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd.MM.yyyy");
@@ -50,5 +55,22 @@ public class Task {
         LocalDateTime nowTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd.MM.yyyy");
         this.update = nowTime.format(formatter);
+    }
+
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("description", description);
+        json.put("status", status.name());
+        json.put("time", time);
+        json.put("update", update);
+        return json;
+    }
+
+    public static Task fromJson(JSONObject json) {
+        return new Task(
+                json.getString("description"),
+                Enum.Status.valueOf(json.getString("status")),
+                json.getString("time"),
+                json.getString("update"));
     }
 }

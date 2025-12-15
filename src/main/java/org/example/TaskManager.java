@@ -4,7 +4,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class TaskManager {
-    private final TreeMap<Integer, Task> taskMap = new TreeMap<>();
+    private TreeMap<Integer, Task> taskMap = new TreeMap<>();
     private int id = 0;
 
     public Map<Integer, Task> getAllTask(){
@@ -60,5 +60,16 @@ public class TaskManager {
         taskMap.get(key).setStatus(status);
         taskMap.get(key).setUpdate();
 
+    }
+    public void setTaskMap(Map<Integer, Task> map) {
+        taskMap = (TreeMap<Integer, Task>) map;
+
+        int maxId = 0;
+        for (int id : map.keySet()) {
+            if (id > maxId) {
+                maxId = id;
+            }
+        }
+        this.id = maxId + 1;
     }
 }
