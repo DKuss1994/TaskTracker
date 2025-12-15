@@ -4,7 +4,8 @@ public class Enum {
     public enum Status {
         DONE,
         TODO,
-        PROGRESS
+        PROGRESS,
+        ALL
     }
 
 
@@ -17,8 +18,7 @@ public class Enum {
         EXIT,
         SHOW,
         YES,
-        NO,
-        ALL
+        NO
 
 
     }

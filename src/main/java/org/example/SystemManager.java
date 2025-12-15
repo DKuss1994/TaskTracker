@@ -40,8 +40,10 @@ public class SystemManager {
             extractedChangeStatus(key);
         }
     }
+
+
     private void extractedChangeStatus(int key){
-        Enum.Status status = userQuestions.userStatusDescription();
+        Enum.Status status = userQuestions.userStatusDescription("Description about Status.(DONE,PROGRESS,TODO) ");
         taskManager.changeStatus(key,status);
 
     }
@@ -52,6 +54,8 @@ public class SystemManager {
 
     private void extractedShow() {
         try {
+            userQuestions.userStatusDescription("What do u want see? Status: (DONE,PROGRESS,TODO) or (ALL) ");
+
             taskManager.showTasks();
         } catch (Exception e) {
             System.out.println(e.getMessage());

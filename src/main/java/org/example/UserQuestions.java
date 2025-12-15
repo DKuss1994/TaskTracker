@@ -36,9 +36,9 @@ public class UserQuestions {
     }
 
 
-    public Enum.Status userStatusDescription() {
+    public Enum.Status userStatusDescription(String text) {
         while (true) {
-            System.out.print("Description about Status.(DONE,PROGRESS,TODO) ");
+            System.out.print(text);
             String input = sc.nextLine().trim().toUpperCase();
             try {
                 return Enum.Status.valueOf(input);

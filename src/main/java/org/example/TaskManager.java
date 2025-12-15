@@ -5,11 +5,6 @@ import java.util.TreeMap;
 public class TaskManager {
     private final TreeMap<Integer, Task> taskMap = new TreeMap<>();
     private int id = 0;
-
-
-    private TreeMap<Integer, Task> getTaskMap() {
-        return taskMap;
-    }
     public int mapSize(){
         return taskMap.size();
     }
@@ -69,15 +64,3 @@ public class TaskManager {
 
     }
 }
-
-
-/*
-
-createdAt: Datum und Uhrzeit, zu der die Aufgabe erstellt wurde
-
-updatedAt: Datum und Uhrzeit, zu der die Aufgabe zuletzt aktualisiert wurde
-
-        SEARCH,
-        CHANGE,
-        INFO,
-        SHOW*/

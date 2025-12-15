@@ -105,7 +105,7 @@ public class UserQuestionsTest {
         String simultan = "done\n";
         Scanner fake = new Scanner(simultan);
         UserQuestions userQuestions = new UserQuestions(fake);
-        Enum.Status result = userQuestions.userStatusDescription();
+        Enum.Status result = userQuestions.userStatusDescription("Description about Status.(DONE,PROGRESS,TODO) ");
         Assertions.assertEquals(Enum.Status.DONE, result);
 
 
@@ -116,7 +116,7 @@ public class UserQuestionsTest {
         String simultan = "WASWS\nPROGRESS";
         Scanner fake = new Scanner(simultan);
         UserQuestions userQuestions = new UserQuestions(fake);
-        Enum.Status result = userQuestions.userStatusDescription();
+        Enum.Status result = userQuestions.userStatusDescription("Description about Status.(DONE,PROGRESS,TODO) ");
         Assertions.assertEquals(Enum.Status.PROGRESS, result);
 
 

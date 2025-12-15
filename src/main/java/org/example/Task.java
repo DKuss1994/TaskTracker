@@ -14,6 +14,12 @@ public class Task {
         this.time = "";
         this.update = "";
     }
+    public String getTime(){
+        return this.time;
+    }
+    public String getUpdate(){
+        return this.update;
+    }
 
     public String getDescription() {
         return description;
