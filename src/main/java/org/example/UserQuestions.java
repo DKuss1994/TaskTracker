@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 public class UserQuestions {
     private final Scanner sc;
-    TaskManager taskManager = new TaskManager();
 
 
     public UserQuestions(Scanner sc) {
