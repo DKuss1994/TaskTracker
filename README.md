@@ -1,144 +1,149 @@
-Task Manager Console Application
+# Task Manager Console Application
 
-This project is a simple console based task manager written in Java.
-Users can create, view, update and delete tasks.
-All tasks are persisted in a JSON file and loaded automatically on startup.
+A simple console based task manager written in Java.
+The application allows users to manage tasks directly from the command line and stores all data persistently in a JSON file.
 
-The project focuses on clean object oriented design, enum usage, user input validation and unit testing with JUnit.
+The project focuses on clean object oriented design, enum usage, input validation and unit testing with JUnit.
 
-Features
+## Overview
 
-Create new tasks with a description
+This application allows you to
 
-Update task descriptions
+1. Create tasks with a description
+2. Update existing tasks
+3. Change task status
+4. Delete tasks by ID
+5. Filter tasks by status
+6. Automatically save and load tasks using JSON
+7. Interact through a simple console interface
 
-Change task status
+## Project Structure
 
-Delete tasks by ID
+### org.example
 
-Filter tasks by status
+### Main
+Entry point of the application.
+Starts the SystemManager.
 
-Persistent storage using JSON
+### SystemManager
+Controls the full application flow.
+Handles user interaction.
+Loads tasks on startup.
+Saves tasks on shutdown.
 
-Console based user interaction
+### Task
+Represents a single task.
+Contains description, status, creation time and last update time.
+Supports JSON serialization and deserialization.
 
-Unit tests for core logic and user input
+### TaskManager
+Stores all tasks in a TreeMap.
+Responsible for adding, deleting and updating tasks.
+Manages task IDs and status changes.
 
-Project Structure
+### UserQuestions
+Handles all console input.
+Validates user actions, descriptions, status input and numeric IDs.
 
-org.example
+### Enum
+Contains all application enums.
 
-Main
-Entry point of the application
+#### Status
+TODO  
+PROGRESS  
+DONE  
+ALL  
 
-SystemManager
-Controls the application flow
-Handles user interaction
-Loads and saves tasks from and to a JSON file
+#### Action
+ADD  
+DELETE  
+CHANGE  
+SHOW  
+EXIT  
+YES  
+NO  
 
-Task
-Represents a single task
-Contains description, status, creation time and last update time
-Supports JSON serialization and deserialization
+## How the Application Works
 
-TaskManager
-Manages all tasks using a map
-Responsible for adding, deleting, updating tasks and changing status
+When the application starts, it checks if a file called `tasks.json` exists.
 
-UserQuestions
-Handles all console input
-Validates user actions, task descriptions, status input and IDs
+1. If the file exists, all tasks are loaded automatically
+2. If the file does not exist, the application starts with an empty task list
+3. The user interacts with the application via console commands
+4. When the application exits, all tasks are saved automatically
 
-Enum
-Contains enums for application states
+## Available Console Actions
 
-Status
-TODO PROGRESS DONE ALL
+### ADD
+Creates a new task with a description.
 
-Action
-ADD DELETE CHANGE SHOW EXIT YES NO
+### SHOW
+Displays tasks filtered by status or shows all tasks.
 
-Tests
+### CHANGE
+Changes the description of a task.
+Optionally allows updating the task status.
 
-TaskManagerTest
-Tests the business logic of the task manager
+### DELETE
+Deletes a task by its ID.
 
-UserQuestionsTest
-Tests user input handling and validation
+### EXIT
+Exits the application and saves all tasks.
 
-How to Use
+## Task Status Values
 
-When the application starts, it automatically loads tasks from tasks.json if the file exists.
-If the file does not exist, the application starts with an empty task list.
+### TODO
+Task is newly created.
 
-Available console actions:
+### PROGRESS
+Task is currently being worked on.
 
-ADD
-Create a new task
+### DONE
+Task is completed.
 
-SHOW
-Display tasks filtered by status or show all tasks
+### ALL
+Used only for displaying all tasks.
 
-CHANGE
-Change the description of a task
-Optionally update the task status
+## Data Persistence
 
-DELETE
-Delete a task by its ID
+All tasks are stored in a file called `tasks.json`.
 
-EXIT
-Exit the application and save all tasks
+1. Tasks are saved automatically when the application exits
+2. Tasks are stored in JSON format
+3. Each task contains description, status, creation time and update time
+4. Tasks are restored automatically on the next start
 
-Task Status Values
+## Testing
 
-TODO
-Task is newly created
+The project uses JUnit 5 for automated testing.
 
-PROGRESS
-Task is currently in progress
+### TaskManagerTest covers
 
-DONE
-Task is completed
+1. Adding tasks
+2. Deleting tasks
+3. Updating task descriptions
+4. Default task status handling
+5. Task collection size validation
 
-ALL
-Used only for filtering output
+### UserQuestionsTest covers
 
-Data Persistence
+1. Valid user actions
+2. Invalid input handling
+3. Case insensitive input
+4. Status input validation
 
-All tasks are saved automatically to tasks.json when the application exits.
-Tasks are stored in JSON format including all task details.
-On the next startup, tasks are restored automatically.
+## Requirements
 
-Tests
+1. Java 17 or higher
+2. JUnit 5
+3. org.json library
 
-The project uses JUnit 5 for testing.
+## Purpose of This Project
 
-Covered test cases include:
+This project is designed as a learning and practice application to improve skills in
 
-Adding and removing tasks
-
-Default task status
-
-Updating task descriptions
-
-Valid and invalid user input handling
-
-Requirements
-
-Java 17 or higher
-JUnit 5
-org.json library
-
-Purpose of This Project
-
-This project is intended as a learning and practice application to improve skills in:
-
-Object oriented programming
-
-Enum based state management
-
-Console user interfaces
-
-JSON based persistence
-
-Unit testing with JUnit
+1. Object oriented programming
+2. Enum based state management
+3. Console application design
+4. JSON based persistence
+5. Unit testing with JUnit
