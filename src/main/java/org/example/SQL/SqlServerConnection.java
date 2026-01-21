@@ -1,10 +1,21 @@
 package org.example.SQL;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
 public class SqlServerConnection implements DatabaseConnection{
+    private final ConnectionProvider connectionProvider;
+    public SqlServerConnection(ConnectionProvider connectionProvider){
+        this.connectionProvider = connectionProvider;
+    }
     @Override
     public Connection getConnection(){
-        return null;
+        try{
+            return connectionProvider.getConnection();
+
+        }
+        catch (SQLException e){
+            throw new RuntimeException("Connection to the database failed",e);
+        }
     }
 }
