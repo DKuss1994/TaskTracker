@@ -1,4 +1,4 @@
-package org.example;
+package org.example.Login;
 
 import org.mindrot.jbcrypt.BCrypt;
 
