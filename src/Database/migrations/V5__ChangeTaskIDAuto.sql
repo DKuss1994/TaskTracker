@@ -1,0 +1,3 @@
+USE TaskTracker;
+ALTER TABLE task
+CHANGE taskID taskID int not NULL AUTO_INCREMENT;
