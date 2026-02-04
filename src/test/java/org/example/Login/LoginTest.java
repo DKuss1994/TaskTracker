@@ -40,7 +40,7 @@ public class LoginTest {
            ResultSet fakeResultSet = mock(ResultSet.class);
            when(fakeResultSet.next()).thenReturn(true);
            when(fakeResultSet.getInt("id")).thenReturn(1);
-           when(fakeResultSet.getString("username")).thenReturn("Max");
+           when(fakeResultSet.getString("userName")).thenReturn("Max");
            when(fakeResultSet.getString("password")).thenReturn("123456");
 
         PreparedStatement fakeStatement = mock(PreparedStatement.class);
