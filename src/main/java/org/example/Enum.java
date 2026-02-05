@@ -18,7 +18,9 @@ public class Enum {
         EXIT,
         SHOW,
         YES,
-        NO
+        NO,
+        LOGIN,
+        REGISTRATION
 
 
     }
