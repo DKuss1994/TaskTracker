@@ -1,4 +1,8 @@
-package org.example;
+package org.example.Task;
+
+import org.example.Enum.Enum;
+import org.example.Login.User;
+import org.example.Task.Interface.TaskRepository;
 
 import java.util.Map;
 import java.util.TreeMap;
@@ -6,6 +10,16 @@ import java.util.TreeMap;
 public class TaskManager {
     private TreeMap<Integer, Task> taskMap = new TreeMap<>();
     private int id = 0;
+    private int userID;
+    private TaskRepository taskRepository;
+    public TaskManager(User user,TaskRepository taskRepository){
+        this.userID = user.getId();
+        this.taskRepository = taskRepository;
+    }
+
+    public TaskManager() {
+
+    }
 
     public Map<Integer,Task> getMap(){
         return this.taskMap;
@@ -68,5 +82,9 @@ public class TaskManager {
             }
         }
         this.id = maxId;
+    }
+
+    public int getUserID() {
+        return userID;
     }
 }

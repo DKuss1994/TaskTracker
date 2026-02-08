@@ -2,6 +2,8 @@ package org.example.SQL;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import org.example.SQL.Interface.ConnectionProvider;
+import org.example.SQL.Interface.DatabaseConnection;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;

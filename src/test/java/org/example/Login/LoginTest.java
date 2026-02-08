@@ -4,7 +4,7 @@ import org.example.Login.Interface.FakePasswordService;
 import org.example.Login.Interface.FakePasswordServiceFalse;
 import org.example.Login.Interface.FakeUserMaxRepository;
 import org.example.Login.Interface.FakeUserNotFoundRepository;
-import org.example.SQL.DatabaseConnection;
+import org.example.SQL.Interface.DatabaseConnection;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -39,7 +39,7 @@ public class LoginTest {
     void shouldReturnUserWhenUsernameExists ()throws SQLException{
            ResultSet fakeResultSet = mock(ResultSet.class);
            when(fakeResultSet.next()).thenReturn(true);
-           when(fakeResultSet.getInt("id")).thenReturn(1);
+           when(fakeResultSet.getInt("userId")).thenReturn(0);
            when(fakeResultSet.getString("userName")).thenReturn("Max");
            when(fakeResultSet.getString("password")).thenReturn("123456");
 
@@ -56,7 +56,7 @@ public class LoginTest {
 
         User user = repo.findePasswordUserIDByUserName("Max");
         Assertions.assertNotNull(user);
-        Assertions.assertEquals(1,user.getId());
+        Assertions.assertEquals(0,user.getId());
         Assertions.assertEquals("Max",user.getUser());
         Assertions.assertEquals("123456",user.getPasswordHash());
        }

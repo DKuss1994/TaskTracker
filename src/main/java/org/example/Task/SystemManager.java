@@ -1,4 +1,6 @@
-package org.example;
+package org.example.Task;
+import org.example.Enum.Enum;
+import org.example.Login.User;
 import org.json.JSONObject;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -10,14 +12,19 @@ import java.util.Scanner;
 public class SystemManager {
     private final Scanner sc = new Scanner(System.in);
     private final UserQuestions userQuestions = new UserQuestions(sc);
-    private final TaskManager taskManager = new TaskManager();
     private boolean loop = true;
     private static final Path FILE = Path.of("tasks.json");
+    private User user;
+    private TaskService taskService;
+    private final TaskManager taskManager = new TaskManager(user, taskService);
+    public SystemManager(User user){
+        this.user = user;
+    }
 
     public void start() {
         loadTasks();
         while (loop) {
-            Enum.Action action = userQuestions.userAction("What do u want? (ADD,DELETE,SEARCH,CHANGE,INFO,SHOW,EXIT) ");
+            org.example.Enum.Enum.Action action = userQuestions.userAction("What do u want? (ADD,DELETE,SEARCH,CHANGE,INFO,SHOW,EXIT) ");
             switch (action) {
                 case ADD -> extractedAddUserDescription();
                 case CHANGE -> extractedChangeUserDescription();
@@ -41,15 +48,15 @@ public class SystemManager {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        Enum.Action action = userQuestions.userAction("Do u want change Status ?(YES/NO)");
-        if (Objects.requireNonNull(action) == Enum.Action.YES) {
+        org.example.Enum.Enum.Action action = userQuestions.userAction("Do u want change Status ?(YES/NO)");
+        if (Objects.requireNonNull(action) == org.example.Enum.Enum.Action.YES) {
             extractedChangeStatus(key);
         }
     }
 
 
     private void extractedChangeStatus(int key) {
-        Enum.Status status = userQuestions.userStatusDescription("Description about Status.(DONE,PROGRESS,TODO) ");
+        org.example.Enum.Enum.Status status = userQuestions.userStatusDescription("Description about Status.(DONE,PROGRESS,TODO) ");
         taskManager.changeStatus(key, status);
 
     }
@@ -72,7 +79,7 @@ public class SystemManager {
 
     private void extractedShow() {
         try {
-            Enum.Status status = userQuestions.userStatusDescription("What do u want see? Status: (DONE,PROGRESS,TODO) or (ALL) ");
+            org.example.Enum.Enum.Status status = userQuestions.userStatusDescription("What do u want see? Status: (DONE,PROGRESS,TODO) or (ALL) ");
             switch (status) {
                 case ALL -> showTasks();
                 case TODO -> showTODO();
@@ -91,7 +98,7 @@ public class SystemManager {
             throw new IllegalArgumentException("Not task found! Pls add Task.");
         } else {
             for (int key : allTask.keySet()) {
-                if (taskManager.getTask(key).getStatus() == Enum.Status.TODO) {
+                if (taskManager.getTask(key).getStatus() == org.example.Enum.Enum.Status.TODO) {
                     System.out.println("Key: " + key + " Task: " + allTask.get(key).getPrintout());
                 }
             }
@@ -105,7 +112,7 @@ public class SystemManager {
             throw new IllegalArgumentException("Not task found! Pls add Task.");
         } else {
             for (int key : allTask.keySet()) {
-                if (taskManager.getTask(key).getStatus() == Enum.Status.DONE) {
+                if (taskManager.getTask(key).getStatus() == org.example.Enum.Enum.Status.DONE) {
                     System.out.println("Key: " + key + " Task: " + allTask.get(key).getPrintout());
                 }
             }

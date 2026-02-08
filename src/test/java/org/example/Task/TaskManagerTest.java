@@ -1,10 +1,10 @@
-package org.example;
+package org.example.Task;
 
+import org.example.Enum.Enum;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
-import java.util.TreeMap;
 
 
 public class TaskManagerTest {

@@ -1,4 +1,4 @@
-package org.example.SQL;
+package org.example.SQL.Interface;
 
 import java.sql.Connection;
 

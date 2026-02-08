@@ -1,6 +1,5 @@
-package org.example;
+package org.example.Login;
 
-import org.example.Login.PasswordService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

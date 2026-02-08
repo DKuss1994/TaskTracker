@@ -8,4 +8,9 @@ public class FakeUserNotFoundRepository implements UserRepository {
     public User findePasswordUserIDByUserName(String userName) {
        return null;
     }
+
+    @Override
+    public void createANewUserWithHashPassword(String userName, String hashPassword) {
+
+    }
 }

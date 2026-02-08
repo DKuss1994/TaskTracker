@@ -1,5 +1,6 @@
-package org.example;
+package org.example.Task;
 
+import org.example.Enum.Enum;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import java.util.Scanner;

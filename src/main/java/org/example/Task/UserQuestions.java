@@ -1,4 +1,6 @@
-package org.example;
+package org.example.Task;
+
+import org.example.Enum.Enum;
 
 import java.util.Scanner;
 
@@ -11,12 +13,12 @@ public class UserQuestions {
         this.sc = sc;
     }
 
-    public Enum.Action userAction(String text) {
+    public org.example.Enum.Enum.Action userAction(String text) {
         while (true) {
             System.out.print(text);
             String input = sc.nextLine().trim().toUpperCase();
             try {
-                return Enum.Action.valueOf(input);
+                return org.example.Enum.Enum.Action.valueOf(input);
             } catch (IllegalArgumentException e) {
                 System.out.println("Illegal input.");
             }
@@ -36,7 +38,7 @@ public class UserQuestions {
     }
 
 
-    public Enum.Status userStatusDescription(String text) {
+    public org.example.Enum.Enum.Status userStatusDescription(String text) {
         while (true) {
             System.out.print(text);
             String input = sc.nextLine().trim().toUpperCase();

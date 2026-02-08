@@ -2,7 +2,7 @@ package org.example.Login;
 
 import org.example.Login.Interface.PasswordCreate;
 import org.example.Login.Interface.UserRepository;
-import org.example.UserQuestions;
+import org.example.Task.UserQuestions;
 
 public class UserService {
     UserRepository userRepository;
@@ -14,15 +14,17 @@ public class UserService {
 
     }
 
-    public boolean login(String userName, String userPassword) {
+    public User login(String userName, String userPassword) {
         User user = userRepository.findePasswordUserIDByUserName(userName);
         if (user != null) {
             System.out.println("Welcome " + user.getUser());
-            return passwordService.verify(userPassword, user.getPasswordHash());
+            if( passwordService.verify(userPassword, user.getPasswordHash())){
+             return user;
+            }
 
 
         }
-        return false;
+        return null;
     }
 
     public String passwordRegistrierung(UserQuestions userQuestions) {

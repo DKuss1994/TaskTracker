@@ -12,4 +12,9 @@ public class FakeUserMaxRepository implements UserRepository {
         }
        return null;
     }
+
+    @Override
+    public void createANewUserWithHashPassword(String userName, String hashPassword) {
+
+    }
 }

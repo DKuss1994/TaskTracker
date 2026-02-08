@@ -1,5 +1,6 @@
-package org.example;
+package org.example.Task;
 
+import org.example.Enum.Enum;
 import org.json.JSONObject;
 
 import java.time.LocalDateTime;
@@ -7,11 +8,11 @@ import java.time.format.DateTimeFormatter;
 
 public class Task {
     private String description;
-    private Enum.Status status;
+    private org.example.Enum.Enum.Status status;
     private String time;
     private String update;
 
-    private Task(String description, Enum.Status status, String time, String update) {
+    private Task(String description, org.example.Enum.Enum.Status status, String time, String update) {
         this.description = description;
         this.status = status;
         this.time = time;
@@ -20,7 +21,7 @@ public class Task {
 
     public Task(String description) {
         this.description = description;
-        this.status = Enum.Status.TODO;
+        this.status = org.example.Enum.Enum.Status.TODO;
         this.time = "";
         this.update = "";
     }
@@ -33,11 +34,11 @@ public class Task {
         this.description = description;
     }
 
-    public Enum.Status getStatus() {
+    public org.example.Enum.Enum.Status getStatus() {
         return status;
     }
 
-    public void setStatus(Enum.Status status) {
+    public void setStatus(org.example.Enum.Enum.Status status) {
         this.status = status;
     }
 

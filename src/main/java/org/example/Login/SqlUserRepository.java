@@ -1,7 +1,7 @@
 package org.example.Login;
 
 import org.example.Login.Interface.UserRepository;
-import org.example.SQL.DatabaseConnection;
+import org.example.SQL.Interface.DatabaseConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

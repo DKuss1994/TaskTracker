@@ -1,9 +1,12 @@
 package org.example.SQL;
 
+import org.example.SQL.Interface.ConnectionProvider;
+import org.example.SQL.Interface.DatabaseConnection;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class SqlServerConnection implements DatabaseConnection{
+public class SqlServerConnection implements DatabaseConnection {
     private final ConnectionProvider connectionProvider;
     public SqlServerConnection(ConnectionProvider connectionProvider){
         this.connectionProvider = connectionProvider;
