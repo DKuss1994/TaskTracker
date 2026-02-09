@@ -21,7 +21,7 @@ public class FakeTaskRepositoryMoreTask implements TaskRepository {
     }
 
     @Override
-    public void addTaskByUserId(int userID) {
+    public void addTaskDB(int userID, Task task) {
 
     }
 }

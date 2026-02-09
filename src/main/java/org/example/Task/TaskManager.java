@@ -10,7 +10,6 @@ import java.util.TreeMap;
 
 public class TaskManager {
     private TreeMap<Integer, Task> taskMap = new TreeMap<>();
-    private int id = 0;
     private int userID;
     private TaskRepository taskRepository;
     public TaskManager(User user,TaskRepository taskRepository){
@@ -42,10 +41,9 @@ public class TaskManager {
         Task task = new Task(description);
         task.setTime();
         task.setUpdate();
-        id++;
-        taskMap.put(id, task);
-
+        taskRepository.addTaskDB(userID,task);
     }
+
 
     public void delete(int key) {
         if (taskMap.containsKey(key)) {
@@ -73,17 +71,7 @@ public class TaskManager {
         taskMap.get(key).setUpdate();
 
     }
-    public void setTaskMap(Map<Integer, Task> map) {
-        taskMap = new TreeMap<>(map);
 
-        int maxId = 0;
-        for (int id : taskMap.keySet()) {
-            if (id > maxId) {
-                maxId = id;
-            }
-        }
-        this.id = maxId;
-    }
     public List<Task> getAllTask(){
         return taskRepository.findTasksByUserId(userID);
     }

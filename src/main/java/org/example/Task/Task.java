@@ -22,8 +22,12 @@ public class Task {
     public Task(String description) {
         this.description = description;
         this.status = org.example.Enum.Enum.Status.TODO;
-        this.time = Timestamp.valueOf("");
-        this.update = Timestamp.valueOf("");
+    }
+    public Timestamp getTime(){
+        return this.time;
+    }
+    public Timestamp getUpdate(){
+        return this.update;
     }
 
     public String getDescription() {
@@ -47,15 +51,12 @@ public class Task {
     }
 
     public void setTime() {
-        LocalDateTime nowTime = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd.MM.yyyy");
-        this.time = Timestamp.valueOf(nowTime.format(formatter));
+
+        this.time = Timestamp.valueOf(LocalDateTime.now());
     }
 
     public void setUpdate() {
-        LocalDateTime nowTime = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd.MM.yyyy");
-        this.update = Timestamp.valueOf(nowTime.format(formatter));
+        this.update = Timestamp.valueOf(LocalDateTime.now());
     }
 
 }

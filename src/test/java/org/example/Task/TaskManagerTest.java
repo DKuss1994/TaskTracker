@@ -124,6 +124,16 @@ public class TaskManagerTest {
         Assertions.assertEquals("Cook water",tasks.get(0).getDescription());
         Assertions.assertEquals("Cook milk",tasks.get(1).getDescription());
     }
+    @Test
+    void addTaskInTheDBTest(){
+        User user = new User(1,"Max","123456");
+        FakeTaskRepository fakeTaskRepository = new FakeTaskRepository();
+        TaskManager taskManager1 = new TaskManager(user,fakeTaskRepository);
+        taskManager1.add("Buy milk");
+        Assertions.assertEquals(1,fakeTaskRepository.findTasksByUserId(1).size());
+        Assertions.assertEquals("Buy milk",fakeTaskRepository.findTasksByUserId(1).getFirst().getDescription());
+
+    }
 
 
 }

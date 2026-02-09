@@ -30,7 +30,7 @@ public class TaskRepositoryImp implements TaskRepository {
                 Enum.Status statusEnum = Enum.fromDb(status);
                 Timestamp time = resultSet.getTimestamp("time");
                 Timestamp updateTime = resultSet.getTimestamp("updateTime");
-                Task description = new Task(description1,statusEnum,time,updateTime);
+                Task description = new Task(description1, statusEnum, time, updateTime);
                 tasks.add(description);
             }
         } catch (SQLException e) {
@@ -40,7 +40,19 @@ public class TaskRepositoryImp implements TaskRepository {
     }
 
     @Override
-    public void addTaskByUserId(int userID) {
-
+    public void addTaskDB(int userID, Task task) {
+        try {
+            Connection connection = databaseConnection.getConnection();
+            PreparedStatement statement = connection.prepareStatement
+                    ("INSERT INTO task (status,description,time,updateTime,id) VALUES('?','?''?','?','?')");
+            statement.setString(1, String.valueOf(task.getStatus()));
+            statement.setString(2,task.getDescription());
+            statement.setTimestamp(3,task.getTime());
+            statement.setTimestamp(4,task.getUpdate());
+            statement.setInt(5,userID);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

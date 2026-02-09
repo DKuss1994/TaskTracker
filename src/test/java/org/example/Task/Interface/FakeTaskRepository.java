@@ -5,20 +5,20 @@ import org.example.Task.Task;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class FakeTaskRepository implements TaskRepository {
+    private final Map<Integer, List<Task>> data = new HashMap<>();
     @Override
     public List<Task> findTasksByUserId(int userID) {
-        List<Task> taskList = new ArrayList<>();
-        Timestamp timestamp = Timestamp.valueOf("2026-12-12 10:12:58");
-        Task task = new Task("Cook water", Enum.Status.DONE,timestamp,timestamp);
-        taskList.add(task);
-        return taskList;
+        return data.getOrDefault(userID, new ArrayList<>());
     }
 
     @Override
-    public void addTaskByUserId(int userID) {
+    public void addTaskDB(int userID, Task task) {
+            data.computeIfAbsent(userID, k -> new ArrayList<>()).add(task);
 
     }
 }

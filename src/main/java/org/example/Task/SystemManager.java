@@ -1,10 +1,9 @@
 package org.example.Task;
 import org.example.Enum.Enum;
 import org.example.Login.User;
-import org.json.JSONObject;
-import java.nio.file.Files;
+import org.example.SQL.JdbcConnectionProvider;
+import org.example.SQL.SqlServerConnection;
 import java.nio.file.Path;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Scanner;
@@ -13,12 +12,13 @@ public class SystemManager {
     private final Scanner sc = new Scanner(System.in);
     private final UserQuestions userQuestions = new UserQuestions(sc);
     private boolean loop = true;
-    private static final Path FILE = Path.of("tasks.json");
     private User user;
-    private TaskRepositoryImp taskService;
-    private final TaskManager taskManager = new TaskManager(user, taskService);
+    private final TaskManager taskManager ;
     public SystemManager(User user){
         this.user = user;
+
+        TaskRepositoryImp taskService = new TaskRepositoryImp(new SqlServerConnection(new JdbcConnectionProvider()));
+        this.taskManager = new TaskManager(user, taskService);
     }
 
     public void start() {
@@ -155,5 +155,12 @@ public class SystemManager {
         System.out.println("Number not found. Try again.");
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
 
