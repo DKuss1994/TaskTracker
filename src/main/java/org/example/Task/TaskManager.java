@@ -4,6 +4,7 @@ import org.example.Enum.Enum;
 import org.example.Login.User;
 import org.example.Task.Interface.TaskRepository;
 
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -82,6 +83,9 @@ public class TaskManager {
             }
         }
         this.id = maxId;
+    }
+    public List<Task> getAllTask(){
+        return taskRepository.findTasksByUserId(userID);
     }
 
     public int getUserID() {

@@ -1,9 +1,14 @@
 package org.example.Task;
 
 import org.example.Enum.Enum;
+import org.example.Login.User;
+import org.example.Task.Interface.FakeTaskRepository;
+import org.example.Task.Interface.FakeTaskRepositoryMoreTask;
+import org.example.Task.Interface.TaskRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -97,6 +102,27 @@ public class TaskManagerTest {
         taskManager.add("B");
         Map<Integer, Task> allTask = taskManager.getMap();
         Assertions.assertEquals(2, allTask.size());
+    }
+    @Test
+    void getAllTaskFromUserID(){
+        User user = new User(1,"Max","123456");
+        TaskRepository fakeTask = new FakeTaskRepository();
+        TaskManager taskManager1 = new TaskManager(user,fakeTask);
+        List<Task> tasks = taskManager1.getAllTask();
+        Assertions.assertNotNull(tasks);
+        Assertions.assertFalse(tasks.isEmpty());
+        Assertions.assertEquals("Cook water",tasks.get(0).getDescription());
+    }
+    @Test
+    void getAllTaskFromUserIDMoreTask(){
+        User user = new User(1,"Max","123456");
+        TaskRepository fakeTask = new FakeTaskRepositoryMoreTask();
+        TaskManager taskManager1 = new TaskManager(user,fakeTask);
+        List<Task> tasks = taskManager1.getAllTask();
+        Assertions.assertNotNull(tasks);
+        Assertions.assertFalse(tasks.isEmpty());
+        Assertions.assertEquals("Cook water",tasks.get(0).getDescription());
+        Assertions.assertEquals("Cook milk",tasks.get(1).getDescription());
     }
 
 

@@ -22,18 +22,18 @@ public class LoginTest {
     void testLoginTrueIfUserAndPasswordTrue(){
            UserService userService = new UserService(new FakeUserMaxRepository(),new FakePasswordService());
 
-           Assertions.assertTrue(userService.login("Max","123456"));
+           Assertions.assertNotNull(userService.login("Max","123456"));
 
     }
     @Test
     void testLoginFalseIfUserNotFound(){
         UserService userService = new UserService(new FakeUserNotFoundRepository(),new FakePasswordService());
-        Assertions.assertFalse(userService.login("Max","123456"));
+        Assertions.assertNull(userService.login("Max","123456"));
     }
     @Test
     void testLoginFalseIfPasswordFalse(){
         UserService userService = new UserService(new FakeUserMaxRepository(),new FakePasswordServiceFalse());
-        Assertions.assertFalse(userService.login("Max","123456"));
+        Assertions.assertNull(userService.login("Max","123456"));
     }
     @Test
     void shouldReturnUserWhenUsernameExists ()throws SQLException{

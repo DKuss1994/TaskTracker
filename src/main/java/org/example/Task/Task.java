@@ -12,7 +12,7 @@ public class Task {
     private String time;
     private String update;
 
-    private Task(String description, org.example.Enum.Enum.Status status, String time, String update) {
+    public Task(String description, org.example.Enum.Enum.Status status, String time, String update) {
         this.description = description;
         this.status = status;
         this.time = time;
