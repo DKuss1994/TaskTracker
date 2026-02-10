@@ -109,7 +109,7 @@ public class SystemManager {
         try {
             showTasks();
             int taskID = userQuestions.userKey("Take someone of the taskID number too delete the task ");
-            taskManager.delete(user.getId(),taskID);
+            taskManager.delete(user.id(),taskID);
             System.out.println("TaskID: " + taskID + " successful delete.");
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

@@ -17,8 +17,8 @@ public class UserService {
     public User login(String userName, String userPassword) {
         User user = userRepository.findePasswordUserIDByUserName(userName);
         if (user != null) {
-            System.out.println("Welcome " + user.getUser());
-            if( passwordService.verify(userPassword, user.getPasswordHash())){
+            System.out.println("Welcome " + user.user());
+            if( passwordService.verify(userPassword, user.passwordHash())){
              return user;
             }
 

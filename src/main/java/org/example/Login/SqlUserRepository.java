@@ -8,12 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class SqlUserRepository implements UserRepository {
-    private DatabaseConnection databaseConnection;
-
-    public SqlUserRepository(DatabaseConnection databaseConnection) {
-        this.databaseConnection = databaseConnection;
-    }
+public record SqlUserRepository(DatabaseConnection databaseConnection) implements UserRepository {
 
     @Override
     public User findePasswordUserIDByUserName(String userName) {
@@ -25,7 +20,7 @@ public class SqlUserRepository implements UserRepository {
             stmt.setString(1, userName);
             ResultSet resultSet = stmt.executeQuery();
             boolean next = resultSet.next();
-            if(next){
+            if (next) {
                 return new User(resultSet.getInt("userID"), resultSet.getString("userName"), resultSet.getString("password"));
             }
             return null;

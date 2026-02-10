@@ -56,8 +56,8 @@ public class LoginTest {
 
         User user = repo.findePasswordUserIDByUserName("Max");
         Assertions.assertNotNull(user);
-        Assertions.assertEquals(0,user.getId());
-        Assertions.assertEquals("Max",user.getUser());
-        Assertions.assertEquals("123456",user.getPasswordHash());
+        Assertions.assertEquals(0,user.id());
+        Assertions.assertEquals("Max",user.user());
+        Assertions.assertEquals("123456",user.passwordHash());
        }
 }

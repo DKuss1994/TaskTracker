@@ -35,10 +35,10 @@ public class UserLoginManager {
 
                     }
                 }
-                case REGISTRATION -> {
+                case REGISTRATION ->
                     userLoginManager.registrierung();
 
-                }
+
                 case EXIT -> {
                     System.out.println("Bye 👋");
                     return;

@@ -10,7 +10,7 @@ public class TaskManager {
     private int userID;
     private TaskRepository taskRepository;
     public TaskManager(User user,TaskRepository taskRepository){
-        this.userID = user.getId();
+        this.userID = user.id();
         this.taskRepository = taskRepository;
     }
 
