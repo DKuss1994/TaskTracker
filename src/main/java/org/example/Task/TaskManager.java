@@ -45,15 +45,14 @@ public class TaskManager {
     }
 
 
-    public void delete(int key) {
-        if (taskMap.containsKey(key)) {
-            taskMap.remove(key);
-        } else {
-            throw new IllegalArgumentException("Description invalid");
+    public void delete(int userID,int taskID) {
+        Task task = taskRepository.findeTaskByUserIDAndTaskID(userID, taskID);
+        if (task == null) {
+            throw new IllegalArgumentException("Task not found");
         }
+        taskRepository.deleteTaskByUserIDAndTaskID(userID,taskID);
+
     }
-
-
     public void changeTask(int userID, int taskID, String description) {
 
         Task task = taskRepository.findeTaskByUserIDAndTaskID(userID,taskID);

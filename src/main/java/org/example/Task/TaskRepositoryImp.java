@@ -143,4 +143,9 @@ statement.executeUpdate();
         }
     }
 
+    @Override
+    public void deleteTaskByUserIDAndTaskID(int userID, int taskID) {
+
+    }
+
 }

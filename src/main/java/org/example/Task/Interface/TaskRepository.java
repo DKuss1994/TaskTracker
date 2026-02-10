@@ -13,4 +13,5 @@ public interface TaskRepository {
     void changeStatusByUserIDAndTaskID(int userID, int taskID,Enum.Status status, Timestamp update);
     void changeTaskByUserIDAndTaskID(int userID, int taskID,String description, Timestamp update);
     Task findeTaskByUserIDAndTaskID(int userID, int taskID);
+    void deleteTaskByUserIDAndTaskID(int userID, int taskID);
 }

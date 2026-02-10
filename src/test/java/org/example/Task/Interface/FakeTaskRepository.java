@@ -57,5 +57,17 @@ public class FakeTaskRepository implements TaskRepository {
                 .orElse(null);
     }
 
+    @Override
+    public void deleteTaskByUserIDAndTaskID(int userID, int taskID) {
+        List<Task> tasks = findTasksByUserId(userID);
+        if (tasks!= null){
+            tasks.removeIf(t->t.getTaskID()==taskID);
+        }
+        if(tasks == null){
+            data.remove(userID);
+        }
+
+    }
+
 
 }

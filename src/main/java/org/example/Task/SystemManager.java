@@ -115,9 +115,9 @@ public class SystemManager {
     private void extractedDeleteUserKey() {
         try {
             showTasks();
-            int keyNumber = userQuestions.userKey("Take someone of the key number too delete the task ");
-            taskManager.delete(keyNumber);
-            System.out.println("Key: " + keyNumber + " successful delete.");
+            int taskID = userQuestions.userKey("Take someone of the taskID number too delete the task ");
+            taskManager.delete(user.getId(),taskID);
+            System.out.println("TaskID: " + taskID + " successful delete.");
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
