@@ -35,7 +35,7 @@ public class UserService {
                 System.out.println("Password are not the same.");
                 continue;
             }
-            return password;
+            return passwordService.hash(password);
         }
     }
 

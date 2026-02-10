@@ -1,6 +1,6 @@
 package org.example.Task;
 
-import org.example.Enum.Enum;
+import org.example.Enum.TaskEnum;
 import org.example.Login.User;
 import org.example.Task.Interface.TaskRepository;
 
@@ -53,7 +53,7 @@ public class TaskManager {
 
         task.setDescription(description);
     }
-    public void changeStatus(int userID, int taskID, Enum.Status status){
+    public void changeStatus(int userID, int taskID, TaskEnum.Status status){
         Task task = taskRepository.findeTaskByUserIDAndTaskID(userID,taskID);
         if(task == null){
             throw new IllegalArgumentException("Task not Found");
@@ -69,7 +69,7 @@ public class TaskManager {
     public List<Task> getAllTask(){
         return taskRepository.findTasksByUserId(userID);
     }
-    public List<Task> getStatusTask(Enum.Status status){
+    public List<Task> getStatusTask(TaskEnum.Status status){
         return taskRepository.findTasksByStatusAndUserId(userID, status);
     }
 

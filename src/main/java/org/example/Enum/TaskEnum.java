@@ -1,6 +1,6 @@
 package org.example.Enum;
 
-public class Enum {
+public class TaskEnum {
     public enum Status {
         DONE,
         TODO,

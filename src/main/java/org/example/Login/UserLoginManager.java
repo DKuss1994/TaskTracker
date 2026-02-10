@@ -1,6 +1,6 @@
 package org.example.Login;
 
-import org.example.Enum.Enum;
+import org.example.Enum.TaskEnum;
 import org.example.SQL.JdbcConnectionProvider;
 import org.example.SQL.SqlServerConnection;
 
@@ -18,14 +18,14 @@ public class UserLoginManager {
     private final PasswordService passwordService = new PasswordService();
     private final UserService userService = new UserService(sqlUserRepository, passwordService);
 
-    public Enum.Action loginOrRegistrierung() {
+    public TaskEnum.Action loginOrRegistrierung() {
         return userQuestions.userAction("Login or Registration or Exit: ");
     }
 
     public void start() {
         UserLoginManager userLoginManager = new UserLoginManager();
         while (true) {
-            Enum.Action action = userLoginManager.loginOrRegistrierung();
+            TaskEnum.Action action = userLoginManager.loginOrRegistrierung();
             switch (action) {
                 case LOGIN -> {
                     User user = login();

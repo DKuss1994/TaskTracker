@@ -1,18 +1,18 @@
 package org.example.Task;
 
-import org.example.Enum.Enum;
+import org.example.Enum.TaskEnum;
 
 import java.util.Scanner;
 
 
 public record UserQuestions(Scanner sc) {
 
-    public Enum.Action userAction(String text) {
+    public TaskEnum.Action userAction(String text) {
         while (true) {
             System.out.print(text);
             String input = sc.nextLine().trim().toUpperCase();
             try {
-                return Enum.Action.valueOf(input);
+                return TaskEnum.Action.valueOf(input);
             } catch (IllegalArgumentException e) {
                 System.out.println("Illegal input.");
             }
@@ -32,12 +32,12 @@ public record UserQuestions(Scanner sc) {
     }
 
 
-    public Enum.Status userStatusDescription(String text) {
+    public TaskEnum.Status userStatusDescription(String text) {
         while (true) {
             System.out.print(text);
             String input = sc.nextLine().trim().toUpperCase();
             try {
-                return Enum.Status.valueOf(input);
+                return TaskEnum.Status.valueOf(input);
             } catch (IllegalArgumentException e) {
                 System.out.println("Illegal input.");
             }

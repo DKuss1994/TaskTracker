@@ -1,18 +1,18 @@
 package org.example.Task;
 
-import org.example.Enum.Enum;
+import org.example.Enum.TaskEnum;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 public class Task {
     private String description;
-    private org.example.Enum.Enum.Status status;
+    private TaskEnum.Status status;
     private Timestamp time;
     private Timestamp update;
     private int taskID;
 
-    public Task(String description, Enum.Status status, Timestamp time, Timestamp update,int taskID) {
+    public Task(String description, TaskEnum.Status status, Timestamp time, Timestamp update, int taskID) {
         this.description = description;
         this.status = status;
         this.time = time;
@@ -22,7 +22,7 @@ public class Task {
 
     public Task(String description) {
         this.description = description;
-        this.status = org.example.Enum.Enum.Status.TODO;
+        this.status = TaskEnum.Status.TODO;
     }
     public Timestamp getTime(){
         return this.time;
@@ -39,11 +39,11 @@ public class Task {
         this.description = description;
     }
 
-    public org.example.Enum.Enum.Status getStatus() {
+    public TaskEnum.Status getStatus() {
         return status;
     }
 
-    public void setStatus(org.example.Enum.Enum.Status status) {
+    public void setStatus(TaskEnum.Status status) {
         this.status = status;
     }
 

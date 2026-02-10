@@ -1,6 +1,6 @@
 package org.example.Task;
 
-import org.example.Enum.Enum;
+import org.example.Enum.TaskEnum;
 import org.example.SQL.Interface.DatabaseConnection;
 import org.example.Task.Interface.TaskRepository;
 
@@ -27,7 +27,7 @@ public class TaskRepositoryImp implements TaskRepository {
             while (resultSet.next()) {
                 String description1 = resultSet.getString("description");
                 String status = resultSet.getString("status");
-                Enum.Status statusEnum = Enum.fromDb(status);
+                TaskEnum.Status statusEnum = TaskEnum.fromDb(status);
                 Timestamp time = resultSet.getTimestamp("time");
                 Timestamp updateTime = resultSet.getTimestamp("updateTime");
                 int taskID = resultSet.getInt("taskID");
@@ -59,7 +59,7 @@ public class TaskRepositoryImp implements TaskRepository {
 
 
     @Override
-    public List<Task> findTasksByStatusAndUserId(int userID, Enum.Status status) {
+    public List<Task> findTasksByStatusAndUserId(int userID, TaskEnum.Status status) {
         List<Task> tasks = new ArrayList<>();
         String statusString = status.toString();
         try {
@@ -72,7 +72,7 @@ public class TaskRepositoryImp implements TaskRepository {
             while (resultSet.next()) {
                 String description1 = resultSet.getString("description");
                 String statusDB = resultSet.getString("status");
-                Enum.Status statusEnum = Enum.fromDb(statusDB);
+                TaskEnum.Status statusEnum = TaskEnum.fromDb(statusDB);
                 Timestamp time = resultSet.getTimestamp("time");
                 Timestamp updateTime = resultSet.getTimestamp("updateTime");
                 int taskID = resultSet.getInt("taskID");
@@ -86,7 +86,7 @@ public class TaskRepositoryImp implements TaskRepository {
     }
 
     @Override
-    public void changeStatusByUserIDAndTaskID(int userID, int taskID, Enum.Status status, Timestamp update) {
+    public void changeStatusByUserIDAndTaskID(int userID, int taskID, TaskEnum.Status status, Timestamp update) {
         try {
             Connection connection = databaseConnection.getConnection();
             PreparedStatement statement = connection.prepareStatement
@@ -130,7 +130,7 @@ public class TaskRepositoryImp implements TaskRepository {
 
                 String description1 = resultSet.getString("description");
                 String statusDB = resultSet.getString("status");
-                Enum.Status statusEnum = Enum.fromDb(statusDB);
+                TaskEnum.Status statusEnum = TaskEnum.fromDb(statusDB);
                 Timestamp time = resultSet.getTimestamp("time");
                 Timestamp updateTime = resultSet.getTimestamp("updateTime");
                 int taskID1 = resultSet.getInt("taskID");

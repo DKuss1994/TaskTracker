@@ -1,5 +1,5 @@
 package org.example.Task;
-import org.example.Enum.Enum;
+import org.example.Enum.TaskEnum;
 import org.example.Login.User;
 import org.example.SQL.JdbcConnectionProvider;
 import org.example.SQL.SqlServerConnection;
@@ -23,11 +23,11 @@ public class SystemManager {
 
     public void start() {
         while (loop) {
-            org.example.Enum.Enum.Action action = userQuestions.userAction("What do u want? (ADD,DELETE,CHANGE,SHOW,EXIT) ");
+            TaskEnum.Action action = userQuestions.userAction("What do u want? (ADD,DELETE,CHANGE,SHOW,EXIT) ");
             switch (action) {
                 case ADD -> extractedAddUserDescription();
                 case CHANGE -> extractedChangeUserDescription();
-                case DELETE -> extractedDeleteUserKey();
+                case DELETE -> extractedDeleteUserIDAndTaskID();
                 case SHOW -> extractedShow();
                 case EXIT -> exit();
 
@@ -40,8 +40,8 @@ public class SystemManager {
         extractedShow();
         int userID = taskManager.getUserID();
         int taskID = userQuestions.userKey("We need the taskID. ");
-        Enum.Action yesOrNo = userQuestions.userAction("Change Description? (YES/NO)");
-        if(yesOrNo == Enum.Action.YES){
+        TaskEnum.Action yesOrNo = userQuestions.userAction("Change Description? (YES/NO)");
+        if(yesOrNo == TaskEnum.Action.YES){
             String description = userQuestions.userDescription("Your new Description. ");
 
             try {
@@ -50,13 +50,13 @@ public class SystemManager {
                 System.out.println(e.getMessage());
             }
         }
-        org.example.Enum.Enum.Action action = userQuestions.userAction("Do u want change Status ?(YES/NO)");
-        if (Objects.requireNonNull(action) == org.example.Enum.Enum.Action.YES) {
+        TaskEnum.Action action = userQuestions.userAction("Do u want change Status ?(YES/NO)");
+        if (Objects.requireNonNull(action) == TaskEnum.Action.YES) {
             extractedChangeStatus(userID,taskID);
         }
     }
     private void extractedChangeStatus(int userID, int taskID) {
-        org.example.Enum.Enum.Status status = userQuestions.userStatusDescription("Description about Status.(DONE,PROGRESS,TODO) ");
+        TaskEnum.Status status = userQuestions.userStatusDescription("Description about Status.(DONE,PROGRESS,TODO) ");
         taskManager.changeStatus(userID, taskID, status);
     }
     public void exit() {
@@ -72,7 +72,7 @@ public class SystemManager {
             }
         }
     }
-    private void showTasksStatus(Enum.Status status) {
+    private void showTasksStatus(TaskEnum.Status status) {
         List<Task> listTask = taskManager.getStatusTask(status);
         if (listTask.isEmpty()) {
             throw new IllegalArgumentException("Not task found! Pls add Task.");
@@ -85,7 +85,7 @@ public class SystemManager {
 
     private void extractedShow() {
         try {
-            org.example.Enum.Enum.Status status = userQuestions.userStatusDescription("What do u want see? Status: (DONE,PROGRESS,TODO) or (ALL) ");
+            TaskEnum.Status status = userQuestions.userStatusDescription("What do u want see? Status: (DONE,PROGRESS,TODO) or (ALL) ");
             switch (status) {
                 case ALL -> showTasks();
                 case TODO, PROGRESS, DONE -> showTasksStatus(status);
@@ -105,7 +105,7 @@ public class SystemManager {
             System.out.println(e.getMessage());
         }
     }
-    private void extractedDeleteUserKey() {
+    private void extractedDeleteUserIDAndTaskID() {
         try {
             showTasks();
             int taskID = userQuestions.userKey("Take someone of the taskID number too delete the task ");

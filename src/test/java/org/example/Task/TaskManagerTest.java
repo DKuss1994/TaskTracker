@@ -1,6 +1,6 @@
 package org.example.Task;
 
-import org.example.Enum.Enum;
+import org.example.Enum.TaskEnum;
 import org.example.Login.User;
 import org.example.Task.Interface.FakeTaskRepository;
 import org.example.Task.Interface.TaskRepository;
@@ -77,7 +77,7 @@ public class TaskManagerTest {
         Assertions.assertNotNull(tasks);
         System.out.println(tasks.getFirst().getDescription());
         Assertions.assertFalse(tasks.isEmpty());
-        Assertions.assertEquals(Enum.Status.TODO, tasks.getFirst().getStatus());
+        Assertions.assertEquals(TaskEnum.Status.TODO, tasks.getFirst().getStatus());
     }
 
     @Test
@@ -92,7 +92,7 @@ public class TaskManagerTest {
     @Test
     void changeStatusTest() {
         taskManager1.add("Cook Water");
-        Enum.Status done = Enum.Status.DONE;
+        TaskEnum.Status done = TaskEnum.Status.DONE;
         taskManager1.changeStatus(user.id(), 1, done);
         List<Task> allTask = taskManager1.getAllTask();
         Assertions.assertFalse(allTask.isEmpty());

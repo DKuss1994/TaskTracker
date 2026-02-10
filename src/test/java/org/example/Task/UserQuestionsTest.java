@@ -1,6 +1,6 @@
 package org.example.Task;
 
-import org.example.Enum.Enum;
+import org.example.Enum.TaskEnum;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import java.util.Scanner;
@@ -13,8 +13,8 @@ public class UserQuestionsTest {
         String simultan = "add\n";
         Scanner fake = new Scanner(simultan);
         UserQuestions userQuestions = new UserQuestions(fake);
-        Enum.Action result = userQuestions.userAction("What do u want? (ADD,DELETE,SEARCH,CHANGE,INFO,SHOW,EXIT) ");
-        Assertions.assertEquals(Enum.Action.ADD, result);
+        TaskEnum.Action result = userQuestions.userAction("What do u want? (ADD,DELETE,SEARCH,CHANGE,INFO,SHOW,EXIT) ");
+        Assertions.assertEquals(TaskEnum.Action.ADD, result);
 
 
     }
@@ -24,8 +24,8 @@ public class UserQuestionsTest {
         String simultan = "wrong\nadd\n";
         Scanner fake = new Scanner(simultan);
         UserQuestions userQuestions = new UserQuestions(fake);
-        Enum.Action result = userQuestions.userAction("What do u want? (ADD,DELETE,SEARCH,CHANGE,INFO,SHOW,EXIT) ");
-        Assertions.assertEquals(Enum.Action.ADD, result);
+        TaskEnum.Action result = userQuestions.userAction("What do u want? (ADD,DELETE,SEARCH,CHANGE,INFO,SHOW,EXIT) ");
+        Assertions.assertEquals(TaskEnum.Action.ADD, result);
 
     }
 
@@ -34,8 +34,8 @@ public class UserQuestionsTest {
         String simultan = "add\nwrong\n";
         Scanner fake = new Scanner(simultan);
         UserQuestions userQuestions = new UserQuestions(fake);
-        Enum.Action result = userQuestions.userAction("What do u want? (ADD,DELETE,SEARCH,CHANGE,INFO,SHOW,EXIT) ");
-        Assertions.assertEquals(Enum.Action.ADD, result);
+        TaskEnum.Action result = userQuestions.userAction("What do u want? (ADD,DELETE,SEARCH,CHANGE,INFO,SHOW,EXIT) ");
+        Assertions.assertEquals(TaskEnum.Action.ADD, result);
 
     }
 
@@ -44,8 +44,8 @@ public class UserQuestionsTest {
         String simultan = "DeLeTe\n";
         Scanner fake = new Scanner(simultan);
         UserQuestions userQuestions = new UserQuestions(fake);
-        Enum.Action result = userQuestions.userAction("What do u want? (ADD,DELETE,SEARCH,CHANGE,INFO,SHOW,EXIT) ");
-        Assertions.assertEquals(Enum.Action.DELETE, result);
+        TaskEnum.Action result = userQuestions.userAction("What do u want? (ADD,DELETE,SEARCH,CHANGE,INFO,SHOW,EXIT) ");
+        Assertions.assertEquals(TaskEnum.Action.DELETE, result);
 
     }
 
@@ -55,8 +55,8 @@ public class UserQuestionsTest {
         String simultan = "change\n";
         Scanner fake = new Scanner(simultan);
         UserQuestions userQuestions = new UserQuestions(fake);
-        Enum.Action result = userQuestions.userAction("What do u want? (ADD,DELETE,SEARCH,CHANGE,INFO,SHOW,EXIT) ");
-        Assertions.assertEquals(Enum.Action.CHANGE, result);
+        TaskEnum.Action result = userQuestions.userAction("What do u want? (ADD,DELETE,SEARCH,CHANGE,INFO,SHOW,EXIT) ");
+        Assertions.assertEquals(TaskEnum.Action.CHANGE, result);
 
     }
 
@@ -65,8 +65,8 @@ public class UserQuestionsTest {
         String simultan = "exIt\n";
         Scanner fake = new Scanner(simultan);
         UserQuestions userQuestions = new UserQuestions(fake);
-        Enum.Action result = userQuestions.userAction("What do u want? (ADD,DELETE,SEARCH,CHANGE,INFO,SHOW,EXIT) ");
-        Assertions.assertEquals(Enum.Action.EXIT, result);
+        TaskEnum.Action result = userQuestions.userAction("What do u want? (ADD,DELETE,SEARCH,CHANGE,INFO,SHOW,EXIT) ");
+        Assertions.assertEquals(TaskEnum.Action.EXIT, result);
 
     }
 
@@ -75,8 +75,8 @@ public class UserQuestionsTest {
         String simultan = "            show       \n";
         Scanner fake = new Scanner(simultan);
         UserQuestions userQuestions = new UserQuestions(fake);
-        Enum.Action result = userQuestions.userAction("What do u want? (ADD,DELETE,SEARCH,CHANGE,INFO,SHOW,EXIT) ");
-        Assertions.assertEquals(Enum.Action.SHOW, result);
+        TaskEnum.Action result = userQuestions.userAction("What do u want? (ADD,DELETE,SEARCH,CHANGE,INFO,SHOW,EXIT) ");
+        Assertions.assertEquals(TaskEnum.Action.SHOW, result);
 
     }
 
@@ -106,19 +106,16 @@ public class UserQuestionsTest {
         String simultan = "done\n";
         Scanner fake = new Scanner(simultan);
         UserQuestions userQuestions = new UserQuestions(fake);
-        Enum.Status result = userQuestions.userStatusDescription("Description about Status.(DONE,PROGRESS,TODO) ");
-        Assertions.assertEquals(Enum.Status.DONE, result);
-
-
+        TaskEnum.Status result = userQuestions.userStatusDescription("Description about Status.(DONE,PROGRESS,TODO) ");
+        Assertions.assertEquals(TaskEnum.Status.DONE, result);
     }
-
     @Test
     public void userStatusDescriptionWrongTest() {
         String simultan = "WASWS\nPROGRESS";
         Scanner fake = new Scanner(simultan);
         UserQuestions userQuestions = new UserQuestions(fake);
-        Enum.Status result = userQuestions.userStatusDescription("Description about Status.(DONE,PROGRESS,TODO) ");
-        Assertions.assertEquals(Enum.Status.PROGRESS, result);
+        TaskEnum.Status result = userQuestions.userStatusDescription("Description about Status.(DONE,PROGRESS,TODO) ");
+        Assertions.assertEquals(TaskEnum.Status.PROGRESS, result);
 
 
     }

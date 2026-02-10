@@ -1,5 +1,5 @@
 package org.example.Task.Interface;
-import org.example.Enum.Enum;
+import org.example.Enum.TaskEnum;
 import org.example.Task.Task;
 
 import java.sql.Timestamp;
@@ -26,14 +26,14 @@ public class FakeTaskRepository implements TaskRepository {
     }
 
     @Override
-    public List<Task> findTasksByStatusAndUserId(int userID, Enum.Status status) {
+    public List<Task> findTasksByStatusAndUserId(int userID, TaskEnum.Status status) {
         return findTasksByUserId(userID).stream()
                 .filter(t->t.getStatus()==status)
                 .toList();
     }
 
     @Override
-    public void changeStatusByUserIDAndTaskID(int userID, int taskID, Enum.Status status, Timestamp update) {
+    public void changeStatusByUserIDAndTaskID(int userID, int taskID, TaskEnum.Status status, Timestamp update) {
         Task task = findeTaskByUserIDAndTaskID(userID,taskID);
         if(task!=null){
             task.setStatus(status);
