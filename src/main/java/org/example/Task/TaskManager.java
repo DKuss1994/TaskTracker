@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class TaskManager {
-    private TreeMap<Integer, Task> taskMap = new TreeMap<>();
+    private final TreeMap<Integer, Task> taskMap = new TreeMap<>();
     private int userID;
     private TaskRepository taskRepository;
     public TaskManager(User user,TaskRepository taskRepository){
@@ -54,15 +54,20 @@ public class TaskManager {
     }
 
 
-    public void changeTask(int key, String description) {
-        Task task = taskMap.get(key);
-        if (task == null) {
-            throw new IllegalArgumentException("Key not found");
-        }
+    public void changeTask(int userID, int taskID, String description) {
 
+        Task task = taskRepository.findeTaskByUserIDAndTaskID(userID,taskID);
+        if (task == null) {
+            throw new IllegalArgumentException("Task not found");
+        }
         if (description == null || description.isBlank()) {
             throw new IllegalArgumentException("Description invalid");
         }
+        task.setUpdate();
+        taskRepository.changeTaskByUserIDAndTaskID(userID,taskID,description,task.getUpdate());
+
+
+
         task.setDescription(description);
         task.setUpdate();
     }

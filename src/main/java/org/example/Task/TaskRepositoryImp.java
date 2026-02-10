@@ -30,7 +30,8 @@ public class TaskRepositoryImp implements TaskRepository {
                 Enum.Status statusEnum = Enum.fromDb(status);
                 Timestamp time = resultSet.getTimestamp("time");
                 Timestamp updateTime = resultSet.getTimestamp("updateTime");
-                Task description = new Task(description1, statusEnum, time, updateTime);
+                int taskID = resultSet.getInt("taskID");
+                Task description = new Task(description1, statusEnum, time, updateTime, taskID);
                 tasks.add(description);
             }
         } catch (SQLException e) {
@@ -57,8 +58,6 @@ public class TaskRepositoryImp implements TaskRepository {
     }
 
 
-
-
     @Override
     public List<Task> findTasksByStatusAndUserId(int userID, Enum.Status status) {
         List<Task> tasks = new ArrayList<>();
@@ -76,7 +75,8 @@ public class TaskRepositoryImp implements TaskRepository {
                 Enum.Status statusEnum = Enum.fromDb(statusDB);
                 Timestamp time = resultSet.getTimestamp("time");
                 Timestamp updateTime = resultSet.getTimestamp("updateTime");
-                Task description = new Task(description1, statusEnum, time, updateTime);
+                int taskID = resultSet.getInt("taskID");
+                Task description = new Task(description1, statusEnum, time, updateTime, taskID);
                 tasks.add(description);
             }
         } catch (SQLException e) {
@@ -84,4 +84,53 @@ public class TaskRepositoryImp implements TaskRepository {
         }
         return tasks;
     }
+
+    @Override
+    public void changeStatusByUserIDAndTaskID(int userID, int taskID, Enum.Status status, Timestamp update) {
+
+    }
+
+    @Override
+    public void changeTaskByUserIDAndTaskID(int userID, int taskID, String description, Timestamp update) {
+        try {
+            Connection connection = databaseConnection.getConnection();
+            PreparedStatement statement = connection.prepareStatement
+                    ("UPDATE task SET description = ?,updateTime = ? WHERE id = ? AND taskID = ?");
+            statement.setString(1,description);
+            statement.setTimestamp(2,update);
+            statement.setInt(3,userID);
+            statement.setInt(4,taskID);
+statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public Task findeTaskByUserIDAndTaskID(int userID, int taskID) {
+        try {
+            Connection connection = databaseConnection.getConnection();
+            PreparedStatement statement = connection.prepareStatement
+                    ("SELECT * FROM task WHERE taskID = ? AND id = ?");
+            statement.setInt(1, taskID);
+            statement.setInt(2, userID);
+            ResultSet resultSet = statement.executeQuery();
+            if(resultSet.next()) {
+
+                String description1 = resultSet.getString("description");
+                String statusDB = resultSet.getString("status");
+                Enum.Status statusEnum = Enum.fromDb(statusDB);
+                Timestamp time = resultSet.getTimestamp("time");
+                Timestamp updateTime = resultSet.getTimestamp("updateTime");
+                int taskID1 = resultSet.getInt("taskID");
+                return new Task(description1, statusEnum, time, updateTime, taskID1);
+            }
+            else {
+                return null;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

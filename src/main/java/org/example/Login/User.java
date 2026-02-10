@@ -1,9 +1,9 @@
 package org.example.Login;
 
 public class User {
-    private int id;
-    private String user;
-    private String passwordHash;
+    private final int id;
+    private final String user;
+    private final String passwordHash;
     public User(int id,String user,String passwordHash){
         this.id = id;
         this.user = user;

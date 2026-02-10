@@ -81,19 +81,7 @@ public class TaskManagerTest {
         Assertions.assertNull(taskManager.getTask(1));
     }
 
-    @Test
-    void changeTest() {
-        String text = "Hello";
-        String text2 = "WOW!";
-        String change = "BYB";
-        taskManager.add(text);
-        taskManager.changeTask(1,change);
-        taskManager.add(text2);
-        Assertions.assertEquals(change, taskManager.getTask(1).getDescription());;
 
-
-
-    }
     @Test
     void getAllTasks_shouldReturnAllTasks() {
 
@@ -149,6 +137,17 @@ public class TaskManagerTest {
         System.out.println(tasks.getFirst().getDescription());
         Assertions.assertFalse(tasks.isEmpty());
         Assertions.assertEquals(Enum.Status.TODO,tasks.getFirst().getStatus());
+    }
+    @Test
+    void changeTaskTest(){
+        User user = new User(1,"Max","123456");
+        TaskRepository fakeTask = new FakeTaskRepository();
+        TaskManager taskManager1 = new TaskManager(user,fakeTask);
+        taskManager1.add("Cook Water");
+        taskManager1.changeTask(user.getId(),1,"Cook milk");
+        List<Task> allTask = taskManager1.getAllTask();
+        Assertions.assertFalse(allTask.isEmpty());
+        Assertions.assertEquals("Cook milk",fakeTask.findTasksByUserId(1).getFirst().getDescription());
     }
 
 

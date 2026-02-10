@@ -39,18 +39,19 @@ public class SystemManager {
 
     public void extractedChangeUserDescription() {
         extractedShow();
-        int key = userQuestions.userKey("Take someone of the key number too change the task. ");
-        String description = userQuestions.userDescription("What do u want to change? ");
+        int taskID = userQuestions.userKey("We need the taskID. ");
+        String description = userQuestions.userDescription("Your new Description. ");
 
 
         try {
-            taskManager.changeTask(key, description);
+
+            taskManager.changeTask(taskManager.getUserID(),taskID,description);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         org.example.Enum.Enum.Action action = userQuestions.userAction("Do u want change Status ?(YES/NO)");
         if (Objects.requireNonNull(action) == org.example.Enum.Enum.Action.YES) {
-            extractedChangeStatus(key);
+            extractedChangeStatus(taskID);
         }
     }
 
@@ -71,7 +72,7 @@ public class SystemManager {
             throw new IllegalArgumentException("Not task found! Pls add Task.");
         } else {
             for (Task task : listTask) {
-                System.out.println("Description: "+task.getDescription());
+                System.out.println(task.getPrintout());
             }
         }
     }
@@ -81,7 +82,7 @@ public class SystemManager {
             throw new IllegalArgumentException("Not task found! Pls add Task.");
         } else {
             for (Task task : listTask) {
-                System.out.println("Description: "+task.getDescription());
+                System.out.println(task.getPrintout());
             }
         }
     }

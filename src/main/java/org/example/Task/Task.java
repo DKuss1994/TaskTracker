@@ -4,19 +4,20 @@ import org.example.Enum.Enum;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class Task {
     private String description;
     private org.example.Enum.Enum.Status status;
     private Timestamp time;
     private Timestamp update;
+    private int taskID;
 
-    public Task(String description, Enum.Status status, Timestamp time, Timestamp update) {
+    public Task(String description, Enum.Status status, Timestamp time, Timestamp update,int taskID) {
         this.description = description;
         this.status = status;
         this.time = time;
         this.update = update;
+        this.taskID = taskID;
     }
 
     public Task(String description) {
@@ -47,7 +48,7 @@ public class Task {
     }
 
     public String getPrintout() {
-        return "Description: " + description + ", Status: " + status + ", Create Time: " + time + ", Last change time: " + update;
+        return "TaskID: "+taskID+"Description: " + description + ", Status: " + status + ", Create Time: " + time + ", Last change time: " + update;
     }
 
     public void setTime() {
@@ -59,4 +60,15 @@ public class Task {
         this.update = Timestamp.valueOf(LocalDateTime.now());
     }
 
+    public void setUpdate(Timestamp time) {
+        this.update = time;
+    }
+
+    public void setTaskID(int taskID) {
+        this.taskID = taskID;
+    }
+
+    public int getTaskID() {
+        return taskID;
+    }
 }
